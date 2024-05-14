@@ -11,26 +11,7 @@ class InfluxDBManager:
         self.org = org
         self.client = None
 
-    def initialize_client(self):
-        """
-        Initialize and return an InfluxDB client instance.
-        
-        Parameters:
-            url (str): URL of the InfluxDB server.
-            token (str): Authentication token for InfluxDB.
-            org (str): Organization name for InfluxDB.
-        
-        Returns:
-            InfluxDBClient: An initialized InfluxDB client object if successful, None otherwise.
-        """
-        try:
-            self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
-            logging.info("InfluxDB client initialized successfully.")
-            return self.client
-        except Exception as e:
-            logging.error("Failed to initialize InfluxDB client: %s", e)
-            logging.error(f"URL: {self.url}, Token: HIDDEN, Org: {self.org}")
-            return None
+
 
     def write_data(self, target_bucket, points):
         """
@@ -44,18 +25,24 @@ class InfluxDBManager:
         Returns:
             None: Function only logs success or failure of the write operation.
         """
-        if self.client is None:
-            logging.error("No valid InfluxDB client available. Data not written.")
+        try:
+            self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
+            logging.info("InfluxDB client initialized successfully.")
+        except Exception as e:
+            logging.error("Failed to initialize InfluxDB client: %s", e)
+            logging.error(f"URL: {self.url}, Org: {self.org}")
             return False
+        
+        
         try:
             with self.client.write_api() as write_api:
                 write_api.write(bucket=target_bucket, record=points)
                 logging.info("Successfully wrote data to InfluxDB.")
-            return True
+            
         except Exception as e:
             logging.error("Failed to write data to InfluxDB: %s", e)
             return False
     
-    def close(self):
-        if self.client:
-            self.client.close()
+
+        self.client.close()
+        return True

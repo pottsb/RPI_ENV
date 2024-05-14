@@ -36,7 +36,6 @@ if __name__ == '__main__':
     sensor_manager = SensorManager(senseHat)
 
     influx_manager = InfluxDBManager(URL, TOKEN, ORG)
-    client = influx_manager.initialize_client()
     
     # Set up signal handling
     signal.signal(signal.SIGTERM, graceful_exit)
@@ -44,13 +43,6 @@ if __name__ == '__main__':
 
     try:
         while True:
-            if client is None:
-                client = influx_manager.initialize_client()
-                if client is None:
-                    logging.error("Unable to connect. Retrying in {} seconds...".format(RECONNECT_INTERVAL))
-                    time.sleep(RECONNECT_INTERVAL)
-                    continue
-
             # Prepare your data points
             w_data = sensor_manager.get_1w_data()
             sensehat_data = sensor_manager.get_sensehat_data()
@@ -63,9 +55,7 @@ if __name__ == '__main__':
 
             # Attempt to write data
             if not influx_manager.write_data(BUCKET, data_points):
-                logging.error("Write failed, attempting to reinitialize client.")
-                client.close()
-                client = None
+                logging.error("Write failed.")
             
             time.sleep(SAMPLE_PERIOD)  
 
@@ -75,5 +65,4 @@ if __name__ == '__main__':
         print (f"An error occurred: {e}")
 
     finally:
-        influx_manager.close()
         sys.exit(0) 
