@@ -55,8 +55,8 @@ if __name__ == '__main__':
                     continue
 
             # Prepare your data points
-            w_data = SensorManager.get_1w_data(senseHat)
-            sensehat_data = SensorManager.get_sensehat_data(senseHat)
+            w_data = SensorManager.get_1w_data()
+            sensehat_data = SensorManager.get_sensehat_data()
             data_points = w_data + sensehat_data
 
             if len(data_points) == 0:
@@ -77,4 +77,4 @@ if __name__ == '__main__':
 
     finally:
         influx_manager.close()
-        graceful_exit() 
+        sys.exit(0) 

@@ -22,11 +22,6 @@ class SensorManager:
         Collects temperature data from 1-wire sensors, validates it, and prepares data points for InfluxDB.
 
         Parameters:
-            validateSensor (EnvironmentalSensor): An instance of the EnvironmentalSensor class used to 
-            validate sensor data. This instance must have a method `update_temperature` which takes sensor 
-            name and temperature, returning True if the data is valid, otherwise False.
-            senseHat (SenseHat): An instance of the SenseHat class used to interact with the Raspberry Pi 
-            Sense HAT to update the display.
 
         Returns:
             list[Point]: A list of InfluxDB Point objects representing the temperature measurements that 
@@ -66,11 +61,6 @@ class SensorManager:
         data points for InfluxDB.
 
         Parameters:
-            validateSensor (EnvironmentalSensor): An instance of the EnvironmentalSensor class used to 
-            validate sensor data. This instance must have methods `update_temperature`, `update_pressure`, 
-            and `update_humidity` which validate the respective data types.
-            senseHat (SenseHat): An instance of the SenseHat class used to interact with the Raspberry Pi 
-            Sense HAT to gather environmental data and update the display.
 
         Returns:
             list[Point]: A list of InfluxDB Point objects representing the environmental measurements 
