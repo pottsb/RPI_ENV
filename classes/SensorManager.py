@@ -3,7 +3,7 @@ from w1thermsensor import W1ThermSensor
 from classes.EnvironmentalSensor import EnvironmentalSensor
 from classes.DisplayManager import DisplayManager
 from influxdb_client import Point
-from utils import read_dict_from_file
+from utils.persistant_data_manager import read_dict_from_file
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -16,8 +16,6 @@ class SensorManager:
     def __init__(self, senseHat):
         self.validateSensor = EnvironmentalSensor()
         self.senseHat = senseHat
-
-
 
     def get_1w_data(self):
         """

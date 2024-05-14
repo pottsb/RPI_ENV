@@ -2,6 +2,8 @@ from classes.EnvironmentalSensor import EnvironmentalSensor
 from classes.InfluxDBManager import InfluxDBManager
 from classes.SensorManager import SensorManager
 from sense_hat import SenseHat
+from dotenv import load_dotenv
+import os
 
 import time
 import logging
@@ -10,17 +12,13 @@ import sys
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
-SENSOR_CONFIG_FILENAME = "sensor_config.json"
-SAMPLE_PERIOD = 5
-RECONNECT_INTERVAL = 30
-
-#InfluxDB setup
-URL = "http://localhost:8086"
-TOKEN = "your-token-here"
-ORG = "your-org"
-BUCKET = "your-bucket"
-
+SENSOR_CONFIG_FILENAME = os.environ.get("SENSOR_CONFIG_FILENAME")
+SAMPLE_PERIOD = os.environ.get("SAMPLE_PERIOD")
+RECONNECT_INTERVAL = os.environ.get("RECONNECT_INTERVAL")
+URL = os.environ.get("URL")
+TOKEN = os.environ.get("TOKEN")
+ORG = os.environ.get("ORG")
+BUCKET = os.environ.get("BUCKET")
 
 def graceful_exit(signum, frame, influx_manager=None):
     logging.info("Quitting....")
@@ -28,8 +26,8 @@ def graceful_exit(signum, frame, influx_manager=None):
         influx_manager.close()
     sys.exit(0)
 
-
 if __name__ == '__main__':
+    load_dotenv()
     validateSensor = EnvironmentalSensor()
     senseHat = SenseHat()
     sensor_manager = SensorManager(senseHat)
