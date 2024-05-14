@@ -19,8 +19,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 load_dotenv()
 SENSOR_CONFIG_FILENAME = os.environ.get("SENSOR_CONFIG_FILENAME")
-SAMPLE_PERIOD = os.environ.get("SAMPLE_PERIOD")
-RECONNECT_INTERVAL = os.environ.get("RECONNECT_INTERVAL")
+SAMPLE_PERIOD = int(os.environ.get("SAMPLE_PERIOD"))
+RECONNECT_INTERVAL = int(os.environ.get("RECONNECT_INTERVAL"))
 URL = os.environ.get("URL")
 TOKEN = os.environ.get("TOKEN")
 ORG = os.environ.get("ORG")
