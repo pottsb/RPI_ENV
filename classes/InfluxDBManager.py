@@ -29,6 +29,7 @@ class InfluxDBManager:
             return self.client
         except Exception as e:
             logging.error("Failed to initialize InfluxDB client: %s", e)
+            logging.error(f"URL: {self.url}, Token: HIDDEN, Org: {self.org}")
             return None
 
     def write_data(self, target_bucket, points):
