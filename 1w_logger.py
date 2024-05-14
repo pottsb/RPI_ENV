@@ -52,8 +52,8 @@ if __name__ == '__main__':
                     continue
 
             # Prepare your data points
-            w_data = SensorManager.get_1w_data()
-            sensehat_data = SensorManager.get_sensehat_data()
+            w_data = sensor_manager.get_1w_data()
+            sensehat_data = sensor_manager.get_sensehat_data()
             data_points = w_data + sensehat_data
 
             if len(data_points) == 0:
