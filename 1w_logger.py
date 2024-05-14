@@ -20,10 +20,8 @@ TOKEN = os.environ.get("TOKEN")
 ORG = os.environ.get("ORG")
 BUCKET = os.environ.get("BUCKET")
 
-def graceful_exit(signum, frame, influx_manager=None):
+def graceful_exit(signum, frame):
     logging.info("Quitting....")
-    if influx_manager:
-        influx_manager.close()
     sys.exit(0)
 
 if __name__ == '__main__':
@@ -70,4 +68,5 @@ if __name__ == '__main__':
         print ("Program stopped by keyboard interrupt [CTRL_C] by user. ")
 
     finally:
-        graceful_exit(influx_manager) 
+        influx_manager.close()
+        graceful_exit() 
