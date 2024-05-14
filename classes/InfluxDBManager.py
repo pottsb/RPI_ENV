@@ -33,11 +33,11 @@ class InfluxDBManager:
             logging.error(f"URL: {self.url}, Org: {self.org}")
             return False
         
-        
+
         try:
             with self.client.write_api() as write_api:
                 write_api.write(bucket=target_bucket, record=points)
-                logging.info("Successfully wrote data to InfluxDB.")
+                logging.info("Writing data to InfluxDB....")
             
         except Exception as e:
             logging.error("Failed to write data to InfluxDB: %s", e)
