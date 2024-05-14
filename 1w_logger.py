@@ -62,7 +62,7 @@ if __name__ == '__main__':
                 continue
 
             # Attempt to write data
-            if not influx_manager.write_data(client, BUCKET, data_points):
+            if not influx_manager.write_data(BUCKET, data_points):
                 logging.error("Write failed, attempting to reinitialize client.")
                 client.close()
                 client = None
