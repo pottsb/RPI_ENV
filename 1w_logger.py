@@ -12,6 +12,7 @@ import sys
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+load_dotenv()
 SENSOR_CONFIG_FILENAME = os.environ.get("SENSOR_CONFIG_FILENAME")
 SAMPLE_PERIOD = os.environ.get("SAMPLE_PERIOD")
 RECONNECT_INTERVAL = os.environ.get("RECONNECT_INTERVAL")
@@ -25,7 +26,6 @@ def graceful_exit(signum, frame):
     sys.exit(0)
 
 if __name__ == '__main__':
-    load_dotenv()
     validateSensor = EnvironmentalSensor()
     senseHat = SenseHat()
     sensor_manager = SensorManager(senseHat)
