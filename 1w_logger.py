@@ -14,6 +14,8 @@ import sys
 # add error handling for the InfluxDBManager class
 # add error handling for loading the .env file
 # Move os.environ.get() calls to better places
+# Remove value in normal range messages from the validateSensor class
+# add print for sample wait time
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
