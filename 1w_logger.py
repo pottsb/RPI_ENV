@@ -29,6 +29,9 @@ if __name__ == '__main__':
     validateSensor = EnvironmentalSensor()
     senseHat = SenseHat()
     sensor_manager = SensorManager(senseHat)
+
+    print(f"DOTENV INFLUX CONFIG: {URL}, {TOKEN}, {ORG}, {BUCKET}")
+
     influx_manager = InfluxDBManager(URL, TOKEN, ORG)
     client = influx_manager.initialize_client()
     
