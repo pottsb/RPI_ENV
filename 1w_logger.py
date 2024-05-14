@@ -35,12 +35,9 @@ if __name__ == '__main__':
     senseHat = SenseHat()
     sensor_manager = SensorManager(senseHat)
 
-    print(f"DOTENV INFLUX CONFIG: {URL}, {TOKEN}, {ORG}, {BUCKET}")
-
     influx_manager = InfluxDBManager(URL, TOKEN, ORG)
     client = influx_manager.initialize_client()
     
-
     # Set up signal handling
     signal.signal(signal.SIGTERM, graceful_exit)
     signal.signal(signal.SIGINT, graceful_exit)
@@ -74,6 +71,8 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt:
         print ("Program stopped by keyboard interrupt [CTRL_C] by user. ")
+    except Exception as e:
+        print (f"An error occurred: {e}")
 
     finally:
         influx_manager.close()
