@@ -32,8 +32,7 @@ def graceful_exit(signum, frame):
     logging.info("Quitting....")
     sys.exit(0)
 
-if __name__ == '__main__':
-    validateSensor = EnvironmentalSensor()
+def log_temperature():
     senseHat = SenseHat()
     sensor_manager = SensorManager(senseHat)
 
@@ -58,6 +57,8 @@ if __name__ == '__main__':
             # Attempt to write data
             if not influx_manager.write_data(BUCKET, data_points):
                 logging.error("Write failed.")
+                time.sleep(RECONNECT_INTERVAL)
+                continue
             
             time.sleep(SAMPLE_PERIOD)  
 
@@ -68,3 +69,7 @@ if __name__ == '__main__':
 
     finally:
         sys.exit(0) 
+
+
+if __name__ == '__main__':
+    log_temperature()
