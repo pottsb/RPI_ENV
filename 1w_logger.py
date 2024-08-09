@@ -10,12 +10,16 @@ import logging
 import signal
 import sys
 
-#TODO
+# TODO
 # add error handling for the InfluxDBManager class
 # add error handling for loading the .env file
 # Move os.environ.get() calls to better places
 # Remove value in normal range messages from the validateSensor class
 # add print for sample wait time
+# move to venv
+# sudo /usr/bin/python -m pip install influxdb-client
+# sudo /usr/bin/python -m pip install w1thermsensor
+# sudo /usr/bin/python -m pip install python-dotenv
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -59,7 +63,7 @@ def log_temperature():
                 logging.error("Write failed.")
                 time.sleep(RECONNECT_INTERVAL)
                 continue
-            
+
             time.sleep(SAMPLE_PERIOD)  
 
     except KeyboardInterrupt:
