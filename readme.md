@@ -6,6 +6,9 @@ Data is validated to be in a sensible range and implausible rapid changes are re
 # Why
 I use the sense hat LED matrix to display the current humidity and temperature. Due to the proximity of the sense hat temperature sensor to the LED matrix this affects accuracy. The one wire sensors are more accurate and precise than the sense hat and allow logging from multiple sensors.
 
+# How
+1w_initsensors.py can be used to name sensors. when running main.py if no name is found the ID will be used. This script is designed for one new sensor to be added to the bus at a time.
+
 # To Do
 This project has been working for eleven months at this point so I'm unlikely to make further improvements until they become required.
 
@@ -15,6 +18,7 @@ Move os.environ.get() calls to better places<br />
 Remove value in normal range messages from the validateSensor class<br />
 add print for sample wait time<br />
 move to venv with requirements.txt<br />
+add method to name sensors based on lowest temperature. Using an inverted air duster can to freeze the sensors could then be used to identify them. <br />
 
 # Packages
 sudo /usr/bin/python -m pip install influxdb-client<br />
