@@ -10,27 +10,27 @@ class EnvironmentalSensor:
             return self.check_temperature(current_temperature, current_temperature)
         else:
             previous_temperature = self.temperatures_previous[name]
-            error = self.check_temperature(previous_temperature, current_temperature)
+            result = self.check_temperature(previous_temperature, current_temperature)
             self.temperatures_previous[name] = current_temperature
-            return error
+            return result
 
     def update_humidity(self, current_humidity):
         if self.humidity_previous is None:
             self.humidity_previous = current_humidity
             return self.check_humidity(current_humidity, current_humidity)
         else:
-            error = self.check_humidity(self.humidity_previous, current_humidity)
+            result = self.check_humidity(self.humidity_previous, current_humidity)
             self.humidity_previous = current_humidity
-            return error
+            return result
 
     def update_pressure(self, current_pressure):
         if self.pressure_previous is None:
             self.pressure_previous = current_pressure
             return self.check_pressure(current_pressure, current_pressure)
         else:
-            error = self.check_pressure(self.pressure_previous, current_pressure)
+            result = self.check_pressure(self.pressure_previous, current_pressure)
             self.pressure_previous = current_pressure
-            return error
+            return result
 
     def check_temperature(self, previous, current):
         if abs(current - previous) > 5:
