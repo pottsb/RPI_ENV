@@ -9,14 +9,14 @@ I use the sense hat LED matrix to display the current humidity and temperature. 
 # To Do
 This project has been working for eight months at this point so I'm unlikely to make further improvements until they become required.
 
-add error handling for the InfluxDBManager class
-add error handling for loading the .env file
-Move os.environ.get() calls to better places
-Remove value in normal range messages from the validateSensor class
-add print for sample wait time
-move to venv with requirements.txt
+add error handling for the InfluxDBManager class<br />
+add error handling for loading the .env file<br />
+Move os.environ.get() calls to better places<br />
+Remove value in normal range messages from the validateSensor class<br />
+add print for sample wait time<br />
+move to venv with requirements.txt<br />
 
 # Packages
-sudo /usr/bin/python -m pip install influxdb-client
-sudo /usr/bin/python -m pip install w1thermsensor
-sudo /usr/bin/python -m pip install python-dotenv
+sudo /usr/bin/python -m pip install influxdb-client<br />
+sudo /usr/bin/python -m pip install w1thermsensor<br />
+sudo /usr/bin/python -m pip install python-dotenv<br />
