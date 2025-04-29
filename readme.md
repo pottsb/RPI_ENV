@@ -7,7 +7,7 @@ Data is validated to be in a sensible range and implausible rapid changes are re
 I use the sense hat LED matrix to display the current humidity and temperature. Due to the proximity of the sense hat temperature sensor to the LED matrix this affects accuracy. The one wire sensors are more accurate and precise than the sense hat and allow logging from multiple sensors.
 
 # To Do
-This project has been working for eight months at this point so I'm unlikely to make further improvements until they become required.
+This project has been working for eleven months at this point so I'm unlikely to make further improvements until they become required.
 
 add error handling for the InfluxDBManager class<br />
 add error handling for loading the .env file<br />
