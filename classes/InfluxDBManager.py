@@ -3,15 +3,12 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
 class InfluxDBManager:
     def __init__(self, url, token, org):
         self.url = url
         self.token = token
         self.org = org
         self.client = None
-
-
 
     def write_data(self, target_bucket, points):
         """
@@ -32,7 +29,6 @@ class InfluxDBManager:
             logging.error("Failed to initialize InfluxDB client: %s", e)
             logging.error(f"URL: {self.url}, Org: {self.org}")
             return False
-        
 
         try:
             with self.client.write_api() as write_api:
@@ -43,6 +39,5 @@ class InfluxDBManager:
             logging.error("Failed to write data to InfluxDB: %s", e)
             return False
     
-
         self.client.close()
         return True
